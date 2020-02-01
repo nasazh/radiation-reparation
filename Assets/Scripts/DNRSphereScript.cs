@@ -2,7 +2,7 @@
 
 public class DNRSphereScript : MonoBehaviour {
 
-    string direction = "S";
+    public string direction = "S";
 
     public GlobalState globalState;
 
@@ -13,12 +13,12 @@ public class DNRSphereScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (transform.localPosition.y < Constants.SCANNER_BELT_Y) {
+        if ((direction == "S") && (transform.localPosition.y <= Constants.SCANNER_BELT_Y)) {
             transform.localPosition.Set(transform.localPosition.x, Constants.SCANNER_BELT_Y, transform.localPosition.z);
             direction = "E";
         }
 
-        if (transform.localPosition.x > Constants.OUTPUT_BELT_X) {
+        if (transform.localPosition.x >= Constants.OUTPUT_BELT_X) {
             transform.localPosition.Set(Constants.OUTPUT_BELT_X, transform.localPosition.y, transform.localPosition.z);
             direction = "N";
         }
@@ -56,13 +56,14 @@ public class DNRSphereScript : MonoBehaviour {
         return leftOfDead;
     }
 
-    public void onDeath(){
-        globalState.destroyedDNRx = gameObject.transform.localPosition.x;
-        Destroy(gameObject);
+    public void onDeath() {
+        if (globalState.destroyedDNRx == 2000f) {
+            globalState.destroyedDNRx = gameObject.transform.localPosition.x;
+            Destroy(gameObject);
+        }
     }
 
-    void OnMouseExit()
-    {
+    void OnMouseExit() {
         onDeath();
     }
 
