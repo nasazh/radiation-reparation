@@ -17,12 +17,10 @@ public class DNRSphereScript : MonoBehaviour {
     public Sprite sky;
 
     public GlobalState globalState;
-    private System.Random rnd = new System.Random();
-
 
     // Start is called before the first frame update
     void Start() {
-        int color = rnd.Next(1, 12);
+        int color = Mathf.RoundToInt(Random.Range(0.1f, 1.19f) * 10);
         Sprite selected = violet;
         switch (color) {
             case 1: selected = violet; break;
