@@ -3,7 +3,6 @@
 public class DNRSphereScript : MonoBehaviour {
 
     string direction = "S";
-    public bool wasLeftOfDead = false;
 
     public GlobalState globalState;
 
@@ -31,6 +30,7 @@ public class DNRSphereScript : MonoBehaviour {
     }
 
     private void Move() {
+        float oldX = transform.localPosition.x;
         switch (direction) {
             case "S" :
                 transform.Translate(Vector3.down * Time.deltaTime * Constants.BALLS_SPEED);
@@ -42,21 +42,16 @@ public class DNRSphereScript : MonoBehaviour {
                 transform.Translate(Vector3.up * Time.deltaTime * Constants.BALLS_SPEED);
                 break;
         }
-        wasLeftOfDead = false;
+        float newX = transform.localPosition.x;
+
+        if ((oldX <= globalState.GetDestroyedX()) && (newX >= globalState.GetDestroyedX())) {
+            globalState.destroyedDNRx = 2000f;
+        }
+
     }
 
     private bool canMove() {
         bool leftOfDead = globalState.GetDestroyedX() > transform.localPosition.x;
-
-        if (wasLeftOfDead && !leftOfDead) {
-            Debug.Log("refresh global state");
-            globalState.destroyedDNRx = 2000f;
-            return true;
-        }
-
-        if (leftOfDead) {
-            wasLeftOfDead = true;
-        }
 
         return leftOfDead;
     }
