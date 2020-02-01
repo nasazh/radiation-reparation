@@ -4,10 +4,40 @@ public class DNRSphereScript : MonoBehaviour {
 
     public string direction = "S";
 
+    public Sprite violet;
+    public Sprite red;
+    public Sprite orange;
+    public Sprite yellow;
+    public Sprite salad;
+    public Sprite green;
+    public Sprite teal;
+    public Sprite levander;
+    public Sprite indigo;
+    public Sprite blue;
+    public Sprite sky;
+
     public GlobalState globalState;
+    private System.Random rnd = new System.Random();
+
 
     // Start is called before the first frame update
     void Start() {
+        int color = rnd.Next(1, 12);
+        Sprite selected = violet;
+        switch (color) {
+            case 1: selected = violet; break;
+            case 2: selected = red; break;
+            case 3: selected = orange; break;
+            case 4: selected = yellow; break;
+            case 5: selected = salad; break;
+            case 6: selected = green; break;
+            case 7: selected = teal; break;
+            case 8: selected = levander; break;
+            case 9: selected = indigo; break;
+            case 10: selected = blue; break;
+            case 11: selected = sky; break;
+        }
+        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = selected;
         globalState = GameObject.Find("GlobalState").GetComponent<GlobalState>();
     }
 
@@ -68,13 +98,13 @@ public class DNRSphereScript : MonoBehaviour {
         onDeath();
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
+    void OnTriggerEnter2D(Collider2D col) {
         DNRSphereScript dnrHitter = col.gameObject.GetComponent<DNRSphereScript>();
-        if (dnrHitter.direction == "N") {
+        if (dnrHitter != null && dnrHitter.direction == "N") {
             globalState.skipDNRSpawn = true;
+            globalState.pauseTime = true;
             dnrHitter.direction = "E";
-            Vector3 spawnLocation = new Vector3(transform.localPosition.x - 54, transform.localPosition.y, transform.localPosition.z);
+            Vector3 spawnLocation = new Vector3(transform.localPosition.x - 62, transform.localPosition.y, transform.localPosition.z);
             dnrHitter.gameObject.transform.SetPositionAndRotation(spawnLocation, Quaternion.identity);
             globalState.addedDNRx = dnrHitter.gameObject.transform.localPosition.x - 0.01f;
         }

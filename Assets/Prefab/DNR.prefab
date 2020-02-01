@@ -47,6 +47,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: S
+  violet: {fileID: 21300000, guid: bcba3452da82f41429c4beed385a3c84, type: 3}
+  red: {fileID: 21300000, guid: 79b993ee2c8704ddba070cf3565a0c71, type: 3}
+  orange: {fileID: 21300000, guid: b3608c8d32a4145b59e5ac376b405f5b, type: 3}
+  yellow: {fileID: 21300000, guid: d888457fc7b6b4051b64fcaa76b36137, type: 3}
+  salad: {fileID: 21300000, guid: d26c98dad50074dfeac19135b34bf110, type: 3}
+  green: {fileID: 21300000, guid: 7b2c277fe788f4bd0a72754975c0f772, type: 3}
+  teal: {fileID: 21300000, guid: 425b75f27e6ff444dbe91bb34ffcb91a, type: 3}
+  levander: {fileID: 21300000, guid: e8a6579e4f9c14341a0412ffed7680ea, type: 3}
+  indigo: {fileID: 21300000, guid: debfc8f7e80d844a9b3de55b0a9df6e4, type: 3}
+  blue: {fileID: 21300000, guid: 3334feb4ef6844ba5973b29627161241, type: 3}
+  sky: {fileID: 21300000, guid: 65c6948ca42774e6c80e34fdf318803c, type: 3}
   globalState: {fileID: 0}
 --- !u!58 &3098942225004601967
 CircleCollider2D:
@@ -61,9 +72,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00043441774, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 8
 --- !u!50 &2835293970267694462
 Rigidbody2D:
   serializedVersion: 4
@@ -156,7 +167,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b3608c8d32a4145b59e5ac376b405f5b, type: 3}
-  m_Color: {r: 1, g: 0.44705883, b: 0.20392157, a: 1}
+  m_Color: {r: 0.95686275, g: 1, b: 0.972549, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
