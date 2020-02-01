@@ -3,10 +3,13 @@
 public class DNRSphereScript : MonoBehaviour {
 
     string direction = "S";
+    public bool wasLeftOfDead = false;
+
+    public GlobalState globalState;
 
     // Start is called before the first frame update
     void Start() {
-
+        globalState = GameObject.Find("GlobalState").GetComponent<GlobalState>();
     }
 
     // Update is called once per frame
@@ -21,6 +24,13 @@ public class DNRSphereScript : MonoBehaviour {
             direction = "N";
         }
 
+        if (canMove()) {
+            Move();
+        }
+
+    }
+
+    private void Move() {
         switch (direction) {
             case "S" :
                 transform.Translate(Vector3.down * Time.deltaTime * Constants.BALLS_SPEED);
@@ -32,8 +42,33 @@ public class DNRSphereScript : MonoBehaviour {
                 transform.Translate(Vector3.up * Time.deltaTime * Constants.BALLS_SPEED);
                 break;
         }
-
+        wasLeftOfDead = false;
     }
 
+    private bool canMove() {
+        bool leftOfDead = globalState.GetDestroyedX() > transform.localPosition.x;
+
+        if (wasLeftOfDead && !leftOfDead) {
+            Debug.Log("refresh global state");
+            globalState.destroyedDNRx = 2000f;
+            return true;
+        }
+
+        if (leftOfDead) {
+            wasLeftOfDead = true;
+        }
+
+        return leftOfDead;
+    }
+
+    public void onDeath(){
+        globalState.destroyedDNRx = gameObject.transform.localPosition.x;
+        Destroy(gameObject);
+    }
+
+    void OnMouseExit()
+    {
+        onDeath();
+    }
 
 }
