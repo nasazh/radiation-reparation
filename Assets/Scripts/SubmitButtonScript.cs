@@ -13,6 +13,17 @@ public class SubmitButtonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyUp(KeyCode.Space)){
+            Submit();
+        }
+    }
+
+    void OnMouseDown()
+    {
+        Submit();
+    }
+
+    public void Submit(){
+        Debug.Log("Submit");
     }
 }
