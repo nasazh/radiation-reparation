@@ -52,8 +52,9 @@ public class DNRSphereScript : MonoBehaviour {
 
     private bool canMove() {
         bool leftOfDead = globalState.GetDestroyedX() > transform.localPosition.x;
+        bool rightOfSpawn = globalState.addedDNRx <= transform.localPosition.x;
 
-        return leftOfDead;
+        return leftOfDead && (rightOfSpawn || !globalState.skipDNRSpawn);
     }
 
     public void onDeath() {
@@ -65,6 +66,18 @@ public class DNRSphereScript : MonoBehaviour {
 
     void OnMouseExit() {
         onDeath();
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        DNRSphereScript dnrHitter = col.gameObject.GetComponent<DNRSphereScript>();
+        if (dnrHitter.direction == "N") {
+            globalState.skipDNRSpawn = true;
+            dnrHitter.direction = "E";
+            Vector3 spawnLocation = new Vector3(transform.localPosition.x - 54, transform.localPosition.y, transform.localPosition.z);
+            dnrHitter.gameObject.transform.SetPositionAndRotation(spawnLocation, Quaternion.identity);
+            globalState.addedDNRx = dnrHitter.gameObject.transform.localPosition.x - 0.01f;
+        }
     }
 
 }
