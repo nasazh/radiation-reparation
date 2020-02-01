@@ -94,12 +94,9 @@ public class DNRSphereScript : MonoBehaviour {
         }
     }
 
-    void OnMouseExit() {
-        onDeath();
-    }
-
     void OnTriggerEnter2D(Collider2D col) {
         DNRSphereScript dnrHitter = col.gameObject.GetComponent<DNRSphereScript>();
+        RadiationBoltScript bolt = col.gameObject.GetComponent<RadiationBoltScript>();
         if (dnrHitter != null && dnrHitter.direction == "N") {
             globalState.skipDNRSpawn = true;
             globalState.pauseTime = true;
@@ -107,6 +104,10 @@ public class DNRSphereScript : MonoBehaviour {
             Vector3 spawnLocation = new Vector3(transform.localPosition.x - 62, transform.localPosition.y, transform.localPosition.z);
             dnrHitter.gameObject.transform.SetPositionAndRotation(spawnLocation, Quaternion.identity);
             globalState.addedDNRx = dnrHitter.gameObject.transform.localPosition.x - 0.01f;
+        }
+        if (bolt != null) {
+            onDeath();
+            Destroy(bolt.gameObject);
         }
     }
 

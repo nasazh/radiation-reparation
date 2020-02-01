@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RadiationGunScript : MonoBehaviour
 {
+
+    public GameObject bolt;
+    bool charging = false;
+    float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +17,14 @@ public class RadiationGunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.I)){
+        if (charging) {
+            timer += Time.deltaTime;
+        }
+        if (timer >= Constants.DNR_SPAWN_TIME) {
+            timer = 0;
+            charging = false;
+        }
+        if (Input.GetKeyUp(KeyCode.I) && !charging){
             shoot();
         }
         if (Input.GetKey(KeyCode.J)){
@@ -25,6 +36,8 @@ public class RadiationGunScript : MonoBehaviour
     }
 
     private void shoot() {
-
+        Vector3 spawnLocation = new Vector3(transform.localPosition.x - 15, transform.localPosition.y + 70, transform.localPosition.z + 1);
+        Instantiate(bolt, spawnLocation, Quaternion.identity);
+        charging = true;
     }
 }
