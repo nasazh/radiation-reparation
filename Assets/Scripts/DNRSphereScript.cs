@@ -4,6 +4,8 @@ public class DNRSphereScript : MonoBehaviour {
 
     public string direction = "S";
 
+    public float speedMultiplier = 1f;
+
     public Sprite violet;
     public Sprite red;
     public Sprite orange;
@@ -64,13 +66,13 @@ public class DNRSphereScript : MonoBehaviour {
         float oldX = transform.localPosition.x;
         switch (direction) {
             case "S" :
-                transform.Translate(Vector3.down * Time.deltaTime * Constants.BALLS_SPEED);
+                transform.Translate(Vector3.down * Time.deltaTime * Constants.BALLS_SPEED * speedMultiplier);
                 break;
             case "E" :
-                transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED);
+                transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * speedMultiplier);
                 break;
             case "N" :
-                transform.Translate(Vector3.up * Time.deltaTime * Constants.BALLS_SPEED);
+                transform.Translate(Vector3.up * Time.deltaTime * Constants.BALLS_SPEED * speedMultiplier);
                 break;
         }
         float newX = transform.localPosition.x;
@@ -102,9 +104,10 @@ public class DNRSphereScript : MonoBehaviour {
             globalState.skipDNRSpawn = true;
             globalState.pauseTime = true;
             dnrHitter.direction = "E";
-            Vector3 spawnLocation = new Vector3(transform.localPosition.x - 61.98f, transform.localPosition.y, transform.localPosition.z);
+            Vector3 spawnLocation = new Vector3(transform.localPosition.x - 61.98f, transform.localPosition.y, transform.localPosition.z - 0.5f);
             dnrHitter.gameObject.transform.SetPositionAndRotation(spawnLocation, Quaternion.identity);
             globalState.addedDNRx = dnrHitter.gameObject.transform.localPosition.x - 0.005f;
+            dnrHitter.speedMultiplier = 1f;
         }
         if (bolt != null) {
             onDeath();

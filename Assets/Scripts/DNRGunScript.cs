@@ -47,6 +47,7 @@ public class DNRGunScript : MonoBehaviour {
     void spawnDNR() {
         Vector3 spawnLocation = new Vector3(transform.localPosition.x - 15, transform.localPosition.y + 70, transform.localPosition.z + 1);
         readyToShoot = Instantiate(dnr, spawnLocation, Quaternion.identity).GetComponent<DNRSphereScript>();
+        readyToShoot.speedMultiplier = 3f;
         readyToShoot.direction = "";
     }
 

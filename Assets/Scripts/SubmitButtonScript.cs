@@ -5,22 +5,39 @@ public class SubmitButtonScript : MonoBehaviour {
 
     public GlobalState globalState;
     public GoalBoardScript goalBoard;
+    Vector3 scaleChange = new Vector3(-1f, -1f, 0f);
+    bool scaleChanged = false;
+    float timer = 0f;
 
     // Start is called before the first frame update
     void Start() {
         globalState = GameObject.Find("GlobalState").GetComponent<GlobalState>();
-
     }
 
     // Update is called once per frame
     void Update() {
+        if (scaleChanged) {
+            timer += Time.deltaTime;
+            if (timer > 0.3f) {
+                gameObject.transform.localScale -= scaleChange;
+                scaleChanged = false;
+            }
+        }
         if (Input.GetKeyUp(KeyCode.Space)) {
+            gameObject.transform.localScale += scaleChange;
+            scaleChanged = true;
+            timer = 0f;
             Submit();
         }
     }
 
     void OnMouseDown() {
+        gameObject.transform.localScale += scaleChange;
         Submit();
+    }
+
+    void OnMouseUp() {
+        gameObject.transform.localScale -= scaleChange;
     }
 
     public void Submit() {
@@ -34,8 +51,6 @@ public class SubmitButtonScript : MonoBehaviour {
 
         scannerLine.Sort((a, b) => Mathf.RoundToInt(a.gameObject.transform.localPosition.x - b.gameObject.transform.localPosition.x));
 
-//        PrintList(scannerLine);
-//        PrintListObject(goalBoard.currentGoal);
         for (int i = 0; i < scannerLine.Count - goalBoard.currentGoal.Count; i++) {
             if (scannerLine[i].value == goalBoard.currentGoal[0].GetComponent<DNRSphereScript>().value) {
                 var fits = 1;
@@ -57,26 +72,9 @@ public class SubmitButtonScript : MonoBehaviour {
     private void CorrectGoal() {
         globalState.needNewGoal = true;
         globalState.correctGoal += 1;
-
     }
 
     private void FailedGoal() {
         globalState.failedGoal += 1;
-    }
-
-    private void PrintList(List<DNRSphereScript> scannerLine10) {
-        string result = "";
-        scannerLine10.ForEach(a => {
-            result = result + ", " + a.value;
-        });
-        Debug.Log("Scanner Line = " + result);
-    }
-
-    private void PrintListObject(List<GameObject> goalBoardCurrentGoal0) {
-        string result = "";
-        goalBoardCurrentGoal0.ForEach(a => {
-            result = result + ", " + a.GetComponent<DNRSphereScript>().value;
-        });
-        Debug.Log("Goal Line = " + result);
     }
 }
