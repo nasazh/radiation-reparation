@@ -5,6 +5,8 @@ public class Constants {
     public static float OUTPUT_BELT_X = 1446f;
     public static float DNR_SPAWN_TIME = 1.4f;
 
-    public static int GAME_TIME = 60;
+    public static int GAME_TIME = 70;
+
+    public static int STARTING_GOAL_LENGTH = 4;
 
 }
