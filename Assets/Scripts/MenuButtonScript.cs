@@ -2,7 +2,8 @@
 using UnityEngine.SceneManagement;
 
 public class MenuButtonScript : MonoBehaviour {
-    public void onMouseClick() {
+
+    void OnMouseDown() {
         SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }
 }
