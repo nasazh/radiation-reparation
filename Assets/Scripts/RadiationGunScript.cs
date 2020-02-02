@@ -28,10 +28,10 @@ public class RadiationGunScript : MonoBehaviour
             shoot();
         }
         if (Input.GetKey(KeyCode.J)){
-            transform.Translate(Vector3.left * Time.deltaTime * Constants.BALLS_SPEED * 2);
+            transform.Translate(Vector3.left * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
         }
         if (Input.GetKey(KeyCode.L)){
-            transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * 2);
+            transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
         }
     }
 

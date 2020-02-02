@@ -34,8 +34,8 @@ public class SubmitButtonScript : MonoBehaviour {
 
         scannerLine.Sort((a, b) => Mathf.RoundToInt(a.gameObject.transform.localPosition.x - b.gameObject.transform.localPosition.x));
 
-//        PrintList(scannerLine);
-//        PrintListObject(goalBoard.currentGoal);
+        PrintList(scannerLine);
+        PrintListObject(goalBoard.currentGoal);
         for (int i = 0; i < scannerLine.Count - goalBoard.currentGoal.Count; i++) {
             if (scannerLine[i].value == goalBoard.currentGoal[0].GetComponent<DNRSphereScript>().value) {
                 var fits = 1;

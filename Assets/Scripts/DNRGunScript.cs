@@ -22,12 +22,12 @@ public class DNRGunScript : MonoBehaviour {
             shootDNR();
         }
         if (Input.GetKey(KeyCode.A)){
-            transform.Translate(Vector3.left * Time.deltaTime * Constants.BALLS_SPEED * 2);
-            if (!alreadyShot) readyToShoot.gameObject.transform.Translate(Vector3.left * Time.deltaTime * Constants.BALLS_SPEED * 2);
+            transform.Translate(Vector3.left * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
+            if (!alreadyShot) readyToShoot.gameObject.transform.Translate(Vector3.left * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
         }
         if (Input.GetKey(KeyCode.D)){
-            transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * 2);
-            if (!alreadyShot) readyToShoot.gameObject.transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * 2);
+            transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
+            if (!alreadyShot) readyToShoot.gameObject.transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
         }
     }
 

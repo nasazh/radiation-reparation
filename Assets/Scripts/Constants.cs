@@ -9,6 +9,8 @@ public class Constants {
 
     public static int STARTING_GOAL_LENGTH = 3;
 
+    public static int GUN_SPEED_MULTIPLIER = 4;
+
     public static float MAX_COLORS = 0.4f;
 
 }
