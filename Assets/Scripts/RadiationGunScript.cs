@@ -33,6 +33,14 @@ public class RadiationGunScript : MonoBehaviour
         if (Input.GetKey(KeyCode.L)){
             transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
         }
+        if (gameObject.transform.localPosition.x < 240) {
+            Vector3 getBackLocation = new Vector3(240, transform.localPosition.y, transform.localPosition.z);
+            gameObject.transform.SetPositionAndRotation(getBackLocation, Quaternion.identity);
+        }
+        if (gameObject.transform.localPosition.x > 1400) {
+            Vector3 getBackLocation = new Vector3(1400, transform.localPosition.y, transform.localPosition.z);
+            gameObject.transform.SetPositionAndRotation(getBackLocation, Quaternion.identity);
+        }
     }
 
     private void shoot() {

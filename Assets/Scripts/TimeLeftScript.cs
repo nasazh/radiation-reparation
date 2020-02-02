@@ -21,7 +21,7 @@ public class TimeLeftScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        text.text = "" + globalState.correctGoal + "       " + Mathf.RoundToInt(timeLeft - timer) + "       " + globalState.failedGoal;
+        text.text = "Good: " + globalState.correctGoal + "       " + Mathf.RoundToInt(timeLeft - timer) + "      Fail: " + globalState.failedGoal;
         if (timeLeft - timer <= 0) {
             finishGame();
         }

@@ -25,16 +25,16 @@ public class DNRSphereScript : MonoBehaviour {
         int color = Mathf.RoundToInt(Random.Range(0.1f, Constants.MAX_COLORS) * 10);
         Sprite selected = violet;
         switch (color) {
-            case 1: selected = violet; break;
-            case 2: selected = red; break;
+            case 1: selected = green; break;
+            case 2: selected = blue; break;
             case 3: selected = orange; break;
             case 4: selected = yellow; break;
-            case 5: selected = salad; break;
-            case 6: selected = green; break;
-            case 7: selected = teal; break;
+            case 5: selected = teal; break;
+            case 6: selected = violet; break;
+            case 7: selected = salad; break;
             case 8: selected = levander; break;
             case 9: selected = indigo; break;
-            case 10: selected = blue; break;
+            case 10: selected = red; break;
             case 11: selected = sky; break;
         }
         value = color;
@@ -102,9 +102,9 @@ public class DNRSphereScript : MonoBehaviour {
             globalState.skipDNRSpawn = true;
             globalState.pauseTime = true;
             dnrHitter.direction = "E";
-            Vector3 spawnLocation = new Vector3(transform.localPosition.x - 62, transform.localPosition.y, transform.localPosition.z);
+            Vector3 spawnLocation = new Vector3(transform.localPosition.x - 61.98f, transform.localPosition.y, transform.localPosition.z);
             dnrHitter.gameObject.transform.SetPositionAndRotation(spawnLocation, Quaternion.identity);
-            globalState.addedDNRx = dnrHitter.gameObject.transform.localPosition.x - 0.01f;
+            globalState.addedDNRx = dnrHitter.gameObject.transform.localPosition.x - 0.005f;
         }
         if (bolt != null) {
             onDeath();
