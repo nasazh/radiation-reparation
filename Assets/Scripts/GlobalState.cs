@@ -18,6 +18,11 @@ public class GlobalState : MonoBehaviour {
 
     public int failedGoal = 0;
 
+    public float dnrGunMinX = 240f;
+    public float dnrGunMaxX = 1400f;
+    public float radiationGunMinX = 240f;
+    public float radiationGunMaxX = 1400f;
+
     public float GetDestroyedX() {
         return destroyedDNRx;
     }

@@ -13,4 +13,6 @@ public class Constants {
 
     public static float MAX_COLORS = 0.4f;
 
+    public static float DISTANCE_BETWEEN_GUNS = 145;
+
 }

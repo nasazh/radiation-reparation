@@ -29,19 +29,22 @@ public class DNRGunScript : MonoBehaviour {
             transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
             if (!alreadyShot) readyToShoot.gameObject.transform.Translate(Vector3.right * Time.deltaTime * Constants.BALLS_SPEED * Constants.GUN_SPEED_MULTIPLIER);
         }
-        if (gameObject.transform.localPosition.x < 240) {
-            Vector3 getBackLocation = new Vector3(240, transform.localPosition.y, transform.localPosition.z);
+        if (gameObject.transform.localPosition.x < globalState.dnrGunMinX) {
+            Vector3 getBackLocation = new Vector3(globalState.dnrGunMinX, transform.localPosition.y, transform.localPosition.z);
             gameObject.transform.SetPositionAndRotation(getBackLocation, Quaternion.identity);
-            Vector3 getBackLocation2 = new Vector3(225, readyToShoot.transform.localPosition.y, readyToShoot.transform.localPosition.z);
+            Vector3 getBackLocation2 = new Vector3(globalState.dnrGunMinX - 15, readyToShoot.transform.localPosition.y, readyToShoot.transform.localPosition.z);
             if (!alreadyShot) readyToShoot.gameObject.transform.SetPositionAndRotation(getBackLocation2, Quaternion.identity);
 
         }
-        if (gameObject.transform.localPosition.x > 1400) {
-            Vector3 getBackLocation = new Vector3(1400, transform.localPosition.y, transform.localPosition.z);
+        if (gameObject.transform.localPosition.x > globalState.dnrGunMaxX) {
+            Vector3 getBackLocation = new Vector3(globalState.dnrGunMaxX, transform.localPosition.y, transform.localPosition.z);
             gameObject.transform.SetPositionAndRotation(getBackLocation, Quaternion.identity);
-            Vector3 getBackLocation2 = new Vector3(1385, readyToShoot.transform.localPosition.y, readyToShoot.transform.localPosition.z);
+            Vector3 getBackLocation2 = new Vector3(globalState.dnrGunMaxX - 15, readyToShoot.transform.localPosition.y, readyToShoot.transform.localPosition.z);
             if (!alreadyShot) readyToShoot.gameObject.transform.SetPositionAndRotation(getBackLocation2, Quaternion.identity);
         }
+
+        globalState.radiationGunMinX = transform.localPosition.x + Constants.DISTANCE_BETWEEN_GUNS;
+
     }
 
     void spawnDNR() {
