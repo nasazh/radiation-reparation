@@ -36,4 +36,9 @@ public class GlobalState : MonoBehaviour {
         }
     }
 
+    void Start() {
+        DontDestroyOnLoad(gameObject);
+    }
+
+
 }

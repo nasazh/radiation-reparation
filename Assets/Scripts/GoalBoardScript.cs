@@ -5,7 +5,7 @@ public class GoalBoardScript : MonoBehaviour {
 
     public GameObject dnr;
     public GlobalState globalState;
-    public List<GameObject> currentGoal;
+    public List<GameObject> currentGoal = new List<GameObject>();
 
     int lengthOfGoal = Constants.STARTING_GOAL_LENGTH;
     // Start is called before the first frame update
@@ -25,6 +25,7 @@ public class GoalBoardScript : MonoBehaviour {
     void NewGoal() {
         int cumulative = 0;
         currentGoal.ForEach(g => Destroy(g));
+        currentGoal = new List<GameObject>();
 
         for (int i = 0; i < lengthOfGoal; i++) {
             Vector3 spawnLocation = new Vector3(580 + cumulative, 835, 0);

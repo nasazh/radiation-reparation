@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TimeLeftScript : MonoBehaviour
@@ -27,6 +28,6 @@ public class TimeLeftScript : MonoBehaviour
     }
 
     private void finishGame() {
-
+        SceneManager.LoadScene("Post");
     }
 }

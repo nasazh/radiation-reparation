@@ -22,7 +22,7 @@ public class DNRSphereScript : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        int color = Mathf.RoundToInt(Random.Range(0f, 1.19f) * 10);
+        int color = Mathf.RoundToInt(Random.Range(0f, Constants.MAX_COLORS) * 10);
         Sprite selected = violet;
         switch (color) {
             case 1: selected = violet; break;
