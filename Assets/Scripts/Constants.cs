@@ -7,6 +7,6 @@ public class Constants {
 
     public static int GAME_TIME = 70;
 
-    public static int STARTING_GOAL_LENGTH = 4;
+    public static int STARTING_GOAL_LENGTH = 3;
 
 }

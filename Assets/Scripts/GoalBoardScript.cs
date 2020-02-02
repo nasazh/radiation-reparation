@@ -11,18 +11,18 @@ public class GoalBoardScript : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         globalState = GameObject.Find("GlobalState").GetComponent<GlobalState>();
-        newGoal();
+        NewGoal();
     }
 
     // Update is called once per frame
     void Update() {
         if (globalState.needNewGoal) {
-            newGoal();
+            NewGoal();
             globalState.needNewGoal = false;
         }
     }
 
-    void newGoal() {
+    void NewGoal() {
         int cumulative = 0;
         currentGoal.ForEach(g => Destroy(g));
 

@@ -12,7 +12,11 @@ public class GlobalState : MonoBehaviour {
 
     private float timer = 0;
 
-    public bool needNewGoal;
+    public bool needNewGoal = false;
+
+    public int correctGoal = 0 ;
+
+    public int failedGoal = 0;
 
     public float GetDestroyedX() {
         return destroyedDNRx;

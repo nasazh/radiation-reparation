@@ -18,6 +18,8 @@ public class DNRSphereScript : MonoBehaviour {
 
     public GlobalState globalState;
 
+    public int value;
+
     // Start is called before the first frame update
     void Start() {
         int color = Mathf.RoundToInt(Random.Range(0f, 1.19f) * 10);
@@ -35,6 +37,7 @@ public class DNRSphereScript : MonoBehaviour {
             case 10: selected = blue; break;
             case 11: selected = sky; break;
         }
+        value = color;
         gameObject.GetComponentInChildren<SpriteRenderer>().sprite = selected;
         globalState = GameObject.Find("GlobalState").GetComponent<GlobalState>();
     }

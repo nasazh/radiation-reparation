@@ -1326,6 +1326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalState: {fileID: 0}
+  goalBoard: {fileID: 1649307566}
 --- !u!61 &1707789586
 BoxCollider2D:
   m_ObjectHideFlags: 0
