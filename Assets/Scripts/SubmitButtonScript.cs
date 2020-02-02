@@ -19,7 +19,7 @@ public class SubmitButtonScript : MonoBehaviour {
         if (scaleChanged) {
             timer += Time.deltaTime;
             if (timer > 0.3f) {
-                gameObject.transform.localScale -= scaleChange;
+                gameObject.transform.localScale = new Vector3(20f, 20f, 1f);
                 scaleChanged = false;
             }
         }
